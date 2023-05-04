@@ -1,7 +1,7 @@
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 import { useRef } from "react";
-function NewMeetupForm(){
+function NewMeetupForm(props){
     const titleInputRef       = useRef();
     const imageInputRef       = useRef();
     const addressInputRef     = useRef();
@@ -10,6 +10,7 @@ function NewMeetupForm(){
         //useRef used to stop component re-rendering here when the form submitted
         event.preventDefault();
 
+        //reading user entered value
         const enteredTitle       = titleInputRef.current.value;
         const enteredImage       = imageInputRef.current.value;
         const enteredAddress     = addressInputRef.current.value;
@@ -22,12 +23,7 @@ function NewMeetupForm(){
             description: enteredDescription,
         };
 
-        console.log(meetupData);
-    
-
-
-        
-
+        props.onAddMeetup(meetupData);
     }
 
     return(
